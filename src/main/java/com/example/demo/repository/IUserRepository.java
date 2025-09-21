@@ -1,7 +1,11 @@
 package com.example.demo.repository;
 
-import java.util.List;
+import com.example.demo.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface IUserRepository {
-    List<String> getUsers();
+import java.util.Optional;
+
+
+public interface IUserRepository extends JpaRepository<User, Long> {
+    Optional<User> findByName(String name);
 }

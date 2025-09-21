@@ -2,6 +2,7 @@ package com.example.demo;
 
 import com.example.demo.dto.ApiResponse;
 import com.example.demo.dto.UserRequest;
+import com.example.demo.entity.User;
 import com.example.demo.service.HelloService;
 import com.example.demo.service.UserService;
 import jakarta.validation.Valid;
@@ -26,18 +27,16 @@ public class UserController {
         return helloService.hello();
     }
     @GetMapping("/users")
-    public ApiResponse<List<String>> getUsers() {
+    public ApiResponse<List<User>> getUsers() {
         return ApiResponse.success(userService.getUsers());
     }
     @GetMapping("/users/{id}")
-    public ApiResponse<String> getUser(@PathVariable int id) {
+    public ApiResponse<User> getUser(@PathVariable Long id) {
         return ApiResponse.success(userService.getUserById(id));
     }
 
     @PostMapping("/users")
-    public String createUser(@RequestBody @Valid  UserRequest request) {
+    public User createUser(@RequestBody @Valid  UserRequest request) {
         return userService.addUser(request.getName());
     }
-
-
 }

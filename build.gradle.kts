@@ -24,6 +24,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation")// validation
     testImplementation("org.springframework.boot:spring-boot-starter-test") // テスト用
     developmentOnly("org.springframework.boot:spring-boot-devtools")// ホットリロードみたいな
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")//DB
+    runtimeOnly("com.h2database:h2")// h2 DB使用していまっせ。
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

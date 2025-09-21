@@ -21,6 +21,7 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")   // Webアプリ用
+    implementation("org.springframework.boot:spring-boot-starter-validation")// validation
     testImplementation("org.springframework.boot:spring-boot-starter-test") // テスト用
     developmentOnly("org.springframework.boot:spring-boot-devtools")// ホットリロードみたいな
 }

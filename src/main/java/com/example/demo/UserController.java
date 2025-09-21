@@ -1,12 +1,14 @@
 package com.example.demo;
 
+import com.example.demo.dto.ApiResponse;
+import com.example.demo.dto.UserRequest;
 import com.example.demo.service.HelloService;
 import com.example.demo.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -24,12 +26,18 @@ public class UserController {
         return helloService.hello();
     }
     @GetMapping("/users")
-    public String getUsers() {
-        return userService.getUser();
+    public ApiResponse<List<String>> getUsers() {
+        return ApiResponse.success(userService.getUsers());
+    }
+    @GetMapping("/users/{id}")
+    public ApiResponse<String> getUser(@PathVariable int id) {
+        return ApiResponse.success(userService.getUserById(id));
     }
 
     @PostMapping("/users")
-    public String createUser() {
-        return "ユーザ作成";
+    public String createUser(@RequestBody @Valid  UserRequest request) {
+        return userService.addUser(request.getName());
     }
+
+
 }
